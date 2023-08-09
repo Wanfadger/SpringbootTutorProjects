@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QueryCriteria:war">
+    <output-path>$PROJECT_DIR$/QueryCriteria/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>QueryCriteria</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="QueryCriteria-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="QueryCriteria:war exploded" />
+    </root>
+  </artifact>
+</component>
