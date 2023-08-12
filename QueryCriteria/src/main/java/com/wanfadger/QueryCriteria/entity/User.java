@@ -1,5 +1,6 @@
 package com.wanfadger.QueryCriteria.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -30,12 +31,19 @@ public class User {
     private boolean deleted = false;
 
     @CreationTimestamp
+    @Schema(
+            description = "Date when record was created",
+            pattern = "dd/mm/yyyy")
     private LocalDateTime createdDateTime;
 
     @UpdateTimestamp
+    @Schema(
+            description = "last updated date",
+            pattern = "dd/mm/yyyy")
     private LocalDateTime updatedDateTime;
 
     @OneToMany(mappedBy = "user")
+    @Schema(description = "users assigned tasks")
     private Set<Task> tasks= new HashSet<>();
 
 }
