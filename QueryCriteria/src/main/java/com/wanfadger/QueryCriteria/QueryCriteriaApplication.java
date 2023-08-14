@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,9 +28,18 @@ public class QueryCriteriaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(QueryCriteriaApplication.class, args);
+		Test test = new Test();
+		test.age=27;
+		test.name="Galiwango Fahad";
+
+		System.out.println("Name +" +extractTestKeyValue(test , (t) -> t.name));
+		System.out.println("Age +" +extractTestKeyValue(test , (t) -> t.age));
+
 	}
 
-
+	public static  <V> V extractTestKeyValue(Test obj , Function<Test , V> resolver){
+     return resolver.apply(obj);
+	}
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -45,11 +56,22 @@ public class QueryCriteriaApplication implements CommandLineRunner {
 //		System.out.println("Hello Uganda");
 //		System.out.println(saved.getId());
 
-		System.out.println("SEARCH BY CRITERIA");
-		Map<String , String> map = new HashMap<>();
-		map.put("name" , "gopro");
-		List<Project> search = projectService.searchJoin(map);
-		System.out.println(search.stream().map(Project::getName).toList());
-		System.out.println(search.stream().flatMap(p -> p.getTaskStatuses().stream().map(TaskStatus::getName)).toList());
+//		System.out.println("SEARCH BY CRITERIA");
+//		Map<String , String> map = new HashMap<>();
+//		map.put("name" , "gopro");
+//		List<Project> search = projectService.searchJoin(map);
+//		System.out.println(search.stream().map(Project::getName).toList());
+//		System.out.println(search.stream().flatMap(p -> p.getTaskStatuses().stream().map(TaskStatus::getName)).toList());
+
+
+
+
 	}
+
+
+	static class  Test{
+		String name;
+		 int age;
+	}
+
 }
